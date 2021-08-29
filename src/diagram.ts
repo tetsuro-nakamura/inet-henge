@@ -170,6 +170,8 @@ export class Diagram {
             const linkLabelLayer = this.svg.append('g').attr('id', 'link-labels');
             const tooltipLayer = this.svg.append('g').attr('id', 'tooltips');
 
+            d3.select("body").on('keydown', this.undisplayNodes);
+
             const [link, path, label] = Link.render(linkLayer, linkLabelLayer, links);
 
             const group = Group.render(groupLayer, groups).call(
@@ -235,6 +237,31 @@ export class Diagram {
         } catch (e) {
             this.showMessage(e);
             throw e;
+        }
+    }
+
+    undisplayNodes(): void {
+        // reset undisplayed nodes when escape key pressed
+        if ((event as KeyboardEvent).keyCode === 27) {
+            const node = d3.selectAll('.node')
+            node.each(function (d) {
+                d.displayCallback(this);
+            });
+
+            const link = d3.selectAll('.link')
+            link.each(function (d) {
+                d.displayCallback(this);
+            });
+        } else {
+            const node = d3.selectAll('.node')
+            node.each(function (d) {
+                d.undisplayCallback(this);
+            });
+
+        const link = d3.selectAll('.link')
+        link.each(function (d) {
+                d.undisplayCallback(this);
+            });
         }
     }
 

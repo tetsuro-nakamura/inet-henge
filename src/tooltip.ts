@@ -53,7 +53,6 @@ export class Tooltip {
             if (event.defaultPrevented) {
                 return;
             }
-
             d3.select(element).attr('visibility', this.toggleVisibility());
         };
     }

@@ -22,7 +22,9 @@
     "url": "http://github.com/codeout"
   },
   "main": "inet-henge.js",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "devDependencies": {
     "@types/d3": "~3",
     "@types/node": "^14.0.14",
@@ -45,6 +47,7 @@
     "dev": "./node_modules/.bin/webpack --config webpack.dev.js",
     "prod": "./node_modules/.bin/webpack --config webpack.prod.js",
     "clean": "rm -rf inet-henge*.js* dist",
-    "watch": "./node_modules/.bin/webpack --config webpack.dev.js --watch"
+    "watch": "./node_modules/.bin/webpack --config webpack.dev.js --watch",
+    "start": "node server.js"
   }
 }
